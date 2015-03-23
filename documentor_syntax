@@ -1,0 +1,48 @@
+#YAML-файл должен начинаться с указания версии документора
+documentor: '1.0'
+#Далее идет информация о текущем API. Она помещается в список info
+info:
+   #Заголовок, название API
+   title: Rest API
+   description: API description
+   version: 'Version of API'
+#имя хоста, API к которому описывается
+host: example.com
+#протоколы взаимодействия с API
+schemes:
+   - https
+   - http
+#формат ответа
+produces:
+   - json
+   - yaml
+#API-пути
+paths:
+   /first:
+      #запрос(GET/POST etc)
+         query: get
+         summary: blablabla
+         description: lalala
+         parameters:
+            - name: foo
+              description: sdf
+              required: asdf
+              type: gfd
+            - name: bar
+              description: dfg
+              required: gfd
+              type: afg
+   /second:
+      #запрос(GET/POST etc)
+         query: get
+         summary: blablabla
+         description: lalala
+         parameters:
+            - name: foo
+              description: sdf
+              required: asdf
+              type: gfd
+            - name: bar
+              description: dfg
+              required: gfd
+              type: afg
