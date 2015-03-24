@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+begin
+require 'documentor'
+require 'launchy'
+rescue LoadError
+require 'rubygems'
+require 'documentor'
+require 'launchy'
+end
+Launchy.open(Documentor::PRESENTATION_URL)

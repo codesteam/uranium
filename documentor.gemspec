@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Generate your RESTful API.}
 
   s.add_runtime_dependency "yaml"
+  s.add_runtime_dependency "launchy"
   s.add_development_dependency "rspec", "~>2.5.0"
 
   s.files         = `git ls-files`.split("\n")
