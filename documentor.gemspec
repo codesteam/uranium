@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = []
   s.homepage    = ""
   s.summary     = %q{Documentation generator}
-  s.description = %q{Generate your RESTful API.}
+  s.description = %q{Generate the documentation of your RESTful API}
 
   s.add_runtime_dependency "yaml"
   s.add_runtime_dependency "launchy"
