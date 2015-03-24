@@ -12,7 +12,6 @@ produces:
    - yaml
 paths:
    /first:
-      #запрос(GET/POST etc)
          query: get
          summary: blablabla
          description: lalala
