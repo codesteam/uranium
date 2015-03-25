@@ -6,7 +6,7 @@ Generate the documentation of your RESTful API
 Make sure you have [rake](http://rake.rubyforge.org/) installed.
 
 ```shell
-rake documentror generarate['path-to-input.yaml', 'path-to-output.html']
+rake documentor generate['path-to-input.yaml', 'path-to-output.html']
 ```
 
 ## License
