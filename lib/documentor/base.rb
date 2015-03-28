@@ -1,14 +1,14 @@
 require 'yaml'
 require 'erb'
-require 'parsers/parser_api_info'
-require 'parsers/parser_api_paths'
-require 'parsers/parser_api_path'
+require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_info'
+require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_paths'
+require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_path'
 
 class Documentor
   def initialize(source, options = {})
     @options = {
-      :view_layout   => 'lib/templates/layout.html.erb',
-      :view_api_path => 'lib/templates/_api_path.html.erb',
+      :view_layout   => File.expand_path(File.dirname(__FILE__))+'/templates/layout.html.erb',
+      :view_api_path => File.expand_path(File.dirname(__FILE__))+'/templates/_api_path.html.erb',
     }
     @options = @options.merge(options)
     @source  = source
