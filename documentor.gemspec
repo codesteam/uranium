@@ -4,7 +4,7 @@ require "documentor/version"
 
 Gem::Specification.new do |s|
   s.name        = "documentor"
-  s.version     = Mygem::VERSION
+  s.version     = Documentor::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["stepozer", "Egrace"]
   s.email       = []
