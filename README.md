@@ -1,5 +1,6 @@
-# RESTful API documentation generator
-Generate the documentation of your RESTful API
+# Uranium
+
+Uranium is part of the Uranium project. The Uranium project allows you to visualize your own RESTful services.
 
 ## Running Locally
 
