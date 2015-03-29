@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+begin
+require 'uranium'
+require 'launchy'
+rescue LoadError
+require 'rubygems'
+end
+Launchy.open(Uranium::PRESENTATION_URL)
