@@ -1,8 +1,8 @@
 require 'yaml'
 require 'erb'
-# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_info'
-# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_paths'
-# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_path'
+require 'parsers/parser_api_info'
+require 'parsers/parser_api_paths'
+require 'parsers/parser_api_path'
 
 module Uranium
   class Core
@@ -17,8 +17,8 @@ module Uranium
 
     def decay
       @document       = YAML::parse(@source).root.to_ruby
-      @document_info  = Uranium::ParserApiInfo.new(@document)
-      @document_paths = Uranium::ParserApiPaths.new(@document)
+      @document_info  = ParserApiInfo.new(@document)
+      @document_paths = ParserApiPaths.new(@document)
 
       ERB.new(File.open(@options[:view_layout]){|file| file.read}).result(binding)
     end
