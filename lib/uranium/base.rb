@@ -17,8 +17,8 @@ module Uranium
 
     def decay
       @document       = YAML::parse(@source).root.to_ruby
-      @document_info  = ParserApiInfo.new(@document)
-      @document_paths = ParserApiPaths.new(@document)
+      @document_info  = Uranium::ParserApiInfo.new(@document)
+      @document_paths = Uranium::ParserApiPaths.new(@document)
 
       ERB.new(File.open(@options[:view_layout]){|file| file.read}).result(binding)
     end
