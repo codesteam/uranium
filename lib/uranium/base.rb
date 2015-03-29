@@ -1,8 +1,8 @@
 require 'yaml'
 require 'erb'
-require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_info'
-require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_paths'
-require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_path'
+# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_info'
+# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_paths'
+# require File.expand_path(File.dirname(__FILE__))+'/parsers/parser_api_path'
 
 module Uranium
   class Core
