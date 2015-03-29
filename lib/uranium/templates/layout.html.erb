@@ -7,21 +7,5 @@
     <title><%= @document_info.title %></title>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <h1 class="page-header">
-                <%= @document_info.title %>
-                <small><strong>version: <%= @document_info.version %></strong></small>
-            </h1>
-            <p><%= @document_info.description %></p>
-            <h1 class="page-header">
-                Paths
-            </h1>
-            <section>
-                <% @document_paths.paths.each do |method| %>
-                    <%= render_api_method(method) %>
-                <% end %>
-            </section>
-        </div>
-    </div>
+    <%= render_container() %>
 </body>
