@@ -7,16 +7,18 @@
         else
             panel_type = 'panel-info'
         end
+
+        time = Time.now.to_i
     %>
     <div class="panel <%= panel_type %>">
-        <div class="panel-heading" role="tab" id="headingOne">
+        <div class="panel-heading" role="tab" id="heading_<%= time %>">
             <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= time %>" aria-expanded="true" aria-controls="collapse_<%= time %>">
                     <strong><%= method.querytype.upcase %></strong> <%= method.header %>
                 </a>
             </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div id="collapse_<%= time %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= time %>">
             <div class="panel-body">
                 <h4>Summary</h4>
                 <p><%= method.summary %></p>
