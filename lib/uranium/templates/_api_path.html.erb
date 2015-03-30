@@ -8,7 +8,7 @@
             panel_type = 'panel-info'
         end
 
-        time = Time.now.to_i
+        time = Time.now.to_f.to_s.gsub(".", "")
     %>
     <div class="panel <%= panel_type %>">
         <div class="panel-heading" role="tab" id="heading_<%= time %>">
