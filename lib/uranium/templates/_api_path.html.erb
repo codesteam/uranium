@@ -1,8 +1,8 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <% 
-        if method.querytype == 'get'
+        if method.querytype.downcase == 'get'
             panel_type = 'panel-success'
-        elsif method.querytype == 'put'
+        elsif method.querytype.downcase == 'put'
             panel_type = 'panel-warning'
         else
             panel_type = 'panel-info'
