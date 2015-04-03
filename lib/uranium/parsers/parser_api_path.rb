@@ -16,7 +16,11 @@ module Uranium
         @summary     = path[1]['summary']
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
+
+        @summary     = @summary.join " "     if @summary.is_a? Array
+        @description = @description.join " " if @description.is_a? Array
       end
+
     end
   end
 end
