@@ -1,5 +1,6 @@
 require 'yaml'
 require 'erb'
+include ERB::Util
 
 module Uranium
   require 'uranium/core'

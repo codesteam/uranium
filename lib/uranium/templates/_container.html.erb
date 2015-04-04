@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <h1 class="page-header">
-            <%= @document_info.title %>
-            <small><strong>version: <%= @document_info.version %></strong></small>
+            <%= h @document_info.title %>
+            <small><strong>version: <%= h @document_info.version %></strong></small>
         </h1>
-        <p><%= @document_info.description %></p>
+        <p><%= h @document_info.description %></p>
         <h1 class="page-header">
             Paths
         </h1>
