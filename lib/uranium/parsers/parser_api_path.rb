@@ -17,11 +17,11 @@ module Uranium
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
 
-        @summary     = @summary.join " "     if @summary.is_a? Array
-        @description = @description.join " " if @description.is_a? Array
+        @summary     = @summary.join ", "     if @summary.is_a? Array
+        @description = @description.join ", " if @description.is_a? Array
         @parameters.each_with_index do |parameter, index|
           unless parameter['description'].nil?
-             @parameters[index]['description'] = parameter['description'].join " " if parameter['description'].is_a? Array
+             @parameters[index]['description'] = parameter['description'].join ", " if parameter['description'].is_a? Array
           end
         end
       end
