@@ -19,6 +19,11 @@ module Uranium
 
         @summary     = @summary.join " "     if @summary.is_a? Array
         @description = @description.join " " if @description.is_a? Array
+        @parameters.each_with_index do |parameter, index|
+          unless parameter['description'].nil?
+             @parameters[index]['description'] = parameter['description'].join " " if parameter['description'].is_a? Array
+          end
+        end
       end
 
     end
