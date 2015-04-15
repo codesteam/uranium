@@ -1,0 +1,13 @@
+info:
+   title: 'Example Api template'
+   description: 'Api description'
+   version: 'Version of API'
+paths:
+   Example method:
+         query: 'GET'
+         summary: 'Example summary description'
+         description: 'Full description method'
+         parameters:
+            - name: 'parameters name'
+              description: 'Parameter description'
+              type: 'string'

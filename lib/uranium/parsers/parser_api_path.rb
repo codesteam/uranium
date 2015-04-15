@@ -11,6 +11,14 @@ module Uranium
         raise 'Path description section not specified' if path[1]['description'].nil?
         raise 'Query parameters not specified'         if path[1]['parameters'].nil?
 
+        @supported_types = [
+          "integer",
+          "float",
+          "double",
+          "boolean",
+          "char",
+          "string"].to_set
+
         @header      = path[0]
         @querytype   = path[1]['query']
         @summary     = path[1]['summary']
@@ -20,10 +28,17 @@ module Uranium
         @summary     = @summary.join ", "     if @summary.is_a? Array
         @description = @description.join ", " if @description.is_a? Array
         @parameters.each_with_index do |parameter, index|
-          unless parameter['description'].nil?
-             @parameters[index]['description'] = parameter['description'].join ", " if parameter['description'].is_a? Array
-          end
+          raise 'Parameter description must be defined.'    if parameter['description'].nil?
+          raise 'Parameter type must be defined'            if parameter['type'].nil?
+          raise 'Parameter required option muse be defined' if parameter['required'].nil?
+          raise 'Parameter name must be defined'            if parameter['name'].nil?
+          checkout_parameter_type(parameter)
+          @parameters[index]['description'] = parameter['description'].join ", " if parameter['description'].is_a? Array
         end
+      end
+
+      def checkout_parameter_type(parameter)
+        raise "Type of parameter '#{parameter['type']}' not supported"  unless @supported_types.include? parameter['type']
       end
 
     end
