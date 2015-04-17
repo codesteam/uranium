@@ -3,8 +3,9 @@ require 'erb'
 include ERB::Util
 
 module Uranium
-  require 'uranium/core'
-  require 'uranium/parsers/parser_api_info'
-  require 'uranium/parsers/parser_api_paths'
-  require 'uranium/parsers/parser_api_path'
+  require_relative 'uranium/core'
+  require_relative 'uranium/parsers/parser_api_definitions'
+  require_relative 'uranium/parsers/parser_api_info'
+  require_relative 'uranium/parsers/parser_api_paths'
+  require_relative 'uranium/parsers/parser_api_path'
 end

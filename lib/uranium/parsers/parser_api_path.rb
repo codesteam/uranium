@@ -3,7 +3,9 @@ module Uranium
     class ApiPath
       attr_reader :header, :querytype, :summary, :description, :parameters
 
-      def initialize(path)
+      def initialize(path, definitions_parser)
+        @querytype_values = ['GET', 'POST', 'PUT', 'DELETE']
+
         raise 'Path header section not specified'      if path[0].nil?
         raise 'Path information not specified'         if path[1].nil?
         raise 'Path query type section not specified'  if path[1]['query'].nil?
@@ -16,16 +18,20 @@ module Uranium
         @summary     = path[1]['summary']
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
-
-        @summary     = @summary.join ", "     if @summary.is_a? Array
-        @description = @description.join ", " if @description.is_a? Array
         @parameters.each_with_index do |parameter, index|
-          unless parameter['description'].nil?
-             @parameters[index]['description'] = parameter['description'].join ", " if parameter['description'].is_a? Array
-          end
+          raise 'Parameter description must be defined.'    if parameter['description'].nil?
+          raise 'Parameter type must be defined'            if parameter['type'].nil?
+          raise 'Parameter required option muse be defined' if parameter['required'].nil?
+          raise 'Parameter name must be defined'            if parameter['name'].nil?
+          definitions_parser.parse(parameter['type'])
         end
+
+        check_querytype @querytype
       end
 
+      def check_querytype(querytype)
+        raise "Query type '#{querytype}' not supported" unless @querytype_values.include? querytype
+      end
     end
   end
 end
