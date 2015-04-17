@@ -16,8 +16,6 @@ module Uranium
         @summary     = path[1]['summary']
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
-        @summary     = @summary.join ", "     if @summary.is_a? Array
-        @description = @description.join ", " if @description.is_a? Array
         @parameters.each_with_index do |parameter, index|
           raise 'Parameter description must be defined.'    if parameter['description'].nil?
           raise 'Parameter type must be defined'            if parameter['type'].nil?
@@ -25,7 +23,6 @@ module Uranium
           raise 'Parameter name must be defined'            if parameter['name'].nil?
 
           definitions_parser.parse(parameter['type'])
-          @parameters[index]['description'] = parameter['description'].join ", " if parameter['description'].is_a? Array
         end
       end
     end

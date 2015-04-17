@@ -12,9 +12,6 @@ module Uranium
         @version     = document['info']['version']
         @title       = document['info']['title']
         @description = document['info']['description']
-
-        @title       = @title.join ", "       if @title.is_a? Array
-        @description = @description.join ", " if @description.is_a? Array
       end
     end
   end
