@@ -3,26 +3,13 @@ module Uranium
     class ApiDefinitions
       attr_reader :definitions
 
-      def initialize(parameters)
-
-        @supported_types = [
-          "integer",
-          "float",
-          "double",
-          "boolean",
-          "char",
-          "string"].to_set
-
-        
-        parameters.each_with_index do |parameter, index|
-          checkout_parameter_type(parameter)
-        end
+      def initialize
+        @scalar_types = ['integer', 'float', 'double', 'boolean', 'string']
       end
 
-      def checkout_parameter_type(parameter)
-        raise "Type of parameter '#{parameter['type']}' not supported"  unless @supported_types.include? parameter['type']
+      def parse(type)
+        raise "Type of parameter '#{type}' not supported" unless @scalar_types.include? type
       end
-
     end
   end
 end
