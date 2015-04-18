@@ -1,20 +1,24 @@
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <% 
         if method.querytype.downcase == 'get'
-            panel_type = 'panel-success'
+            panel_type        = 'panel-success'
+            panel_method_type = 'label-success'
         elsif method.querytype.downcase == 'put'
-            panel_type = 'panel-warning'
+            panel_type        = 'panel-warning'
+            panel_method_type = 'label-warning'
         else
-            panel_type = 'panel-info'
+            panel_type        = 'panel-info'
+            panel_method_type = 'label-info'
         end
 
         time = Time.now.to_f.to_s.gsub(".", "")
     %>
     <div class="panel <%= panel_type %>">
         <div class="panel-heading" role="tab" id="heading_<%= time %>">
+            <strong class="pull-right label <%= panel_method_type %>"><%= h method.querytype.upcase %></strong>
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= time %>" aria-expanded="true" aria-controls="collapse_<%= time %>">
-                    <strong><%= h method.querytype.upcase %></strong> <%= h method.header %>
+                    <%= h method.header %>
                 </a>
             </h4>
         </div>
