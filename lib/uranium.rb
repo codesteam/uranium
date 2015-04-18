@@ -1,5 +1,6 @@
 require 'yaml'
 require 'erb'
+require 'json'
 include ERB::Util
 
 module Uranium

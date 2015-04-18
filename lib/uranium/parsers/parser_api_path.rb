@@ -23,7 +23,9 @@ module Uranium
           raise 'Parameter type must be defined'            if parameter['type'].nil?
           raise 'Parameter required option muse be defined' if parameter['required'].nil?
           raise 'Parameter name must be defined'            if parameter['name'].nil?
-          definitions_parser.parse(parameter['type'])
+
+          parameter['type'] = definitions_parser.parse(parameter['type'])
+          parameter['type'] = JSON.pretty_generate(parameter['type']) unless parameter['type'].is_a?(String)
         end
 
         check_querytype @querytype
