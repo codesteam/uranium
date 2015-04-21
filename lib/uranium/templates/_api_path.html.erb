@@ -14,13 +14,11 @@
         time = Time.now.to_f.to_s.gsub(".", "")
     %>
     <div class="panel <%= panel_type %>">
-        <div class="panel-heading" role="tab" id="heading_<%= time %>">
+        <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse_<%= time %>" aria-expanded="true"
+            aria-controls="collapse_<%= time %>" class="panel-heading" id="heading_<%= time %>" style="cursor: pointer;"
+        >
             <strong class="pull-right label <%= panel_method_type %>"><%= h method.querytype.upcase %></strong>
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%= time %>" aria-expanded="true" aria-controls="collapse_<%= time %>">
-                    <%= h method.header %>
-                </a>
-            </h4>
+            <h4 class="panel-title"><%= h method.header %></h4>
         </div>
         <div id="collapse_<%= time %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= time %>">
             <div class="panel-body">
