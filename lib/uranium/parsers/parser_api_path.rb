@@ -4,7 +4,8 @@ module Uranium
       attr_reader :header, :querytype, :summary, :description, :parameters
 
       def initialize(path, definitions_parser)
-        @querytype_values = ['GET', 'POST', 'PUT', 'DELETE']
+        @querytype_values  = ['GET', 'POST', 'PUT', 'DELETE']
+        @located_in_values = ['query', 'header', 'body']
 
         raise 'Path header section not specified'      if path[0].nil?
         raise 'Path information not specified'         if path[1].nil?
@@ -23,6 +24,8 @@ module Uranium
           raise 'Parameter type must be defined'            if parameter['type'].nil?
           raise 'Parameter required option muse be defined' if parameter['required'].nil?
           raise 'Parameter name must be defined'            if parameter['name'].nil?
+          raise 'Parameter in must be defined'              if parameter['in'].nil?
+          check_located_in parameter['in']
 
           parameter['type'] = definitions_parser.parse(parameter['type'])
           parameter['type'] = JSON.pretty_generate(parameter['type']) unless parameter['type'].is_a?(String)
@@ -33,6 +36,10 @@ module Uranium
 
       def check_querytype(querytype)
         raise "Query type '#{querytype}' not supported" unless @querytype_values.include? querytype
+      end
+
+      def check_located_in(located_in)
+        raise "Located in '#{located_in}' not supported" unless @located_in_values.include? located_in
       end
     end
   end

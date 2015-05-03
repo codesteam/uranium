@@ -32,18 +32,20 @@
                 <table class="table">
                     <thead><tr>
                         <th>Name</th>
+                        <th nowrap="nowrap">Located in</th>
                         <th>Description</th>
                         <th>Required</th>
                         <th>Type</th>
                     </tr></thead>
                     <tbody>
                         <% for item in method.parameters %>
-                        <tr>
-                            <td><%= h item['name'] %></td>
-                            <td><%= h item['description'] %></td>
-                            <td><%= h item['required'] %></td>
-                            <td><pre><%= h item['type'] %></pre></td>
-                        </tr>
+                            <tr>
+                                <td><%= h item['name'] %></td>
+                                <td><%= h item['in'] %></td>
+                                <td><%= h item['description'] %></td>
+                                <td><%= h item['required'] %></td>
+                                <td><pre><%= h item['type'] %></pre></td>
+                            </tr>
                         <% end %>
                     </tbody>
                 </table>
