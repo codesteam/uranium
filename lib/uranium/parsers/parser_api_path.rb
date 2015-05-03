@@ -14,13 +14,14 @@ module Uranium
         raise 'Path summary section not specified'     if path[1]['summary'].nil?
         raise 'Path description section not specified' if path[1]['description'].nil?
         raise 'Query parameters not specified'         if path[1]['parameters'].nil?
+        raise 'Path responses section not specified'   if path[1]['responses'].nil?
 
         @header      = path[0]
         @querytype   = path[1]['query']
         @summary     = path[1]['summary']
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
-        @responses   = path[1]['responses'].nil? ? [] : path[1]['responses']
+        @responses   = path[1]['responses']
 
         @parameters.each_with_index do |parameter, index|
           raise 'Parameter description must be defined.'    if parameter['description'].nil?
@@ -38,6 +39,7 @@ module Uranium
           raise "Response objects names can either be any valid HTTP status code or 'default'." unless @response_codes.include?(code)
           raise "Response '#{code}' section not specified"    if response.nil?
           raise 'Response description must be defined.'       if response['description'].nil?
+          raise 'Response type must be defined.'              if response['type'].nil?
         end
 
         check_querytype @querytype
