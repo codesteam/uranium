@@ -22,21 +22,18 @@
         </div>
         <div id="collapse_<%= time %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= time %>">
             <div class="panel-body">
-                <h4>Summary</h4>
-                <p><%= h method.summary %></p>
-
                 <h4>Description</h4>
                 <p><%= h method.description %></p>
 
                 <h4>Parameters</h4>
                 <table class="table">
-                    <thead><tr>
+                    <thead>
                         <th>Name</th>
                         <th nowrap="nowrap">Located in</th>
                         <th>Description</th>
                         <th>Required</th>
                         <th>Type</th>
-                    </tr></thead>
+                    </thead>
                     <tbody>
                         <% for item in method.parameters %>
                             <tr>
@@ -44,6 +41,24 @@
                                 <td><%= h item['in'] %></td>
                                 <td><%= h item['description'] %></td>
                                 <td><%= h item['required'] %></td>
+                                <td><pre><%= h item['type'] %></pre></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+
+                <h4>Responses</h4>
+                <table class="table">
+                    <thead>
+                        <th>Code</th>
+                        <th>Description</th>
+                        <th>Type</th>
+                    </thead>
+                    <tbody>
+                        <% method.responses.each_with_index do |(code, item)| %>
+                            <tr>
+                                <td><%= h code %></td>
+                                <td><%= h item['description'] %></td>
                                 <td><pre><%= h item['type'] %></pre></td>
                             </tr>
                         <% end %>
