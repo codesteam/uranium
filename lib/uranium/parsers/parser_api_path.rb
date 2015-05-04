@@ -56,6 +56,7 @@ module Uranium
       def parse_type(type)
         type = @definitions_parser.parse(type)
         return JSON.pretty_generate(type) unless type.is_a?(String)
+        return type
       end
     end
   end
