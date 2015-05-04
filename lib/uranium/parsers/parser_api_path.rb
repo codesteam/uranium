@@ -4,9 +4,10 @@ module Uranium
       attr_reader :header, :querytype, :description, :parameters, :responses
 
       def initialize(path, definitions_parser)
-        @querytype_values  = ['GET', 'POST', 'PUT', 'DELETE']
-        @located_in_values = ['query', 'header', 'body']
-        @response_codes    = (100...600).to_a << 'default'
+        @querytype_values   = ['GET', 'POST', 'PUT', 'DELETE']
+        @located_in_values  = ['query', 'header', 'body']
+        @response_codes     = (100...600).to_a << 'default'
+        @definitions_parser = definitions_parser
 
         raise 'Path header section not specified'      if path[0].nil?
         raise 'Path information not specified'         if path[1].nil?
@@ -29,8 +30,7 @@ module Uranium
           raise 'Parameter in must be defined'              if parameter['in'].nil?
           check_located_in parameter['in']
 
-          parameter['type'] = definitions_parser.parse(parameter['type'])
-          parameter['type'] = JSON.pretty_generate(parameter['type']) unless parameter['type'].is_a?(String)
+          parameter['type'] = parse_type(parameter['type'])
         end
 
         @responses.each_with_index do |(code, response), index|
@@ -38,6 +38,8 @@ module Uranium
           raise "Response '#{code}' section not specified"    if response.nil?
           raise 'Response description must be defined.'       if response['description'].nil?
           raise 'Response type must be defined.'              if response['type'].nil?
+
+          response['type'] = parse_type(response['type'])
         end
 
         check_querytype @querytype
@@ -49,6 +51,11 @@ module Uranium
 
       def check_located_in(located_in)
         raise "Located in '#{located_in}' not supported" unless @located_in_values.include? located_in
+      end
+
+      def parse_type(type)
+        type = @definitions_parser.parse(type)
+        return JSON.pretty_generate(type) unless type.is_a?(String)
       end
     end
   end
