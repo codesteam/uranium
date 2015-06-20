@@ -5,9 +5,15 @@
             <small><strong>version: <%= h @document_info.version %></strong></small>
         </h1>
         <p><%= h @document_info.description %></p>
-        <h1 class="page-header">
-            Paths
-        </h1>
+        <% unless @document_paths.tags.empty? %>
+            <h2 class="page-header">Tags</h2>
+            <div class="well">
+                <% @document_paths.tags.each do |tag| %>
+                <button class="btn btn-danger"><%= tag %></button>
+                <% end %>
+            </div>
+        <% end %>
+        <h1 class="page-header">Paths</h1>
         <section>
             <% @document_paths.paths.each do |method| %>
                 <%= render_api_method(method) %>

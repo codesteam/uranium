@@ -1,4 +1,8 @@
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel-group
+    <% unless method.tags.nil? %>
+        <%= method.tags.to_a().join(' ') %>
+    <% end %>
+    " id="accordion" role="tablist" aria-multiselectable="true">
     <% 
         if method.querytype.downcase == 'get'
             panel_type        = 'panel-success'
@@ -10,10 +14,16 @@
             panel_type        = 'panel-info'
             panel_method_type = 'label-info'
         end
+        panel_tags = ""
+        unless method.tags.nil?
+            for tag in method.tags
+                panel_tags += tag + " "
+            end
+        end
 
         time = Time.now.to_f.to_s.gsub(".", "")
     %>
-    <div class="panel <%= panel_type %>">
+    <div class="panel <%= panel_type %> ">
         <div data-toggle="collapse" data-parent="#accordion" data-target="#collapse_<%= time %>" aria-expanded="true"
             aria-controls="collapse_<%= time %>" class="panel-heading" id="heading_<%= time %>" style="cursor: pointer;"
         >
@@ -22,6 +32,11 @@
         </div>
         <div id="collapse_<%= time %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading_<%= time %>">
             <div class="panel-body">
+                <% unless method.tags.nil? %>
+                <% for tag in method.tags %>
+                    <span class="label label-danger"><%= tag %></span>
+                <% end %>
+                <% end %>
                 <h4>Description</h4>
                 <p><%= h method.description %></p>
 

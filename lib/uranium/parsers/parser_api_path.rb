@@ -1,7 +1,7 @@
 module Uranium
   module Parsers
     class ApiPath
-      attr_reader :header, :querytype, :description, :parameters, :responses
+      attr_reader :header, :querytype, :description, :parameters, :responses, :tags
 
       def initialize(path, definitions_parser)
         @querytype_values   = ['GET', 'POST', 'PUT', 'DELETE']
@@ -21,6 +21,7 @@ module Uranium
         @description = path[1]['description']
         @parameters  = path[1]['parameters']
         @responses   = path[1]['responses']
+        @tags        = path[1]['tags']
 
         @parameters.each_with_index do |parameter, index|
           raise 'Parameter description must be defined.'    if parameter['description'].nil?
@@ -42,6 +43,7 @@ module Uranium
           response['type'] = parse_type(response['type'])
         end
 
+        check_tags @tags unless @tags.nil?
         check_querytype @querytype
       end
 
@@ -53,11 +55,18 @@ module Uranium
         raise "Located in '#{located_in}' not supported" unless @located_in_values.include? located_in
       end
 
+      def check_tags(tags)
+        tags.each do |tag|
+          raise "Only string tags supported" unless tag.is_a?(String)
+        end
+      end
+
       def parse_type(type)
         type = @definitions_parser.parse(type)
         return JSON.pretty_generate(type) unless type.is_a?(String)
         return type
       end
+
     end
   end
 end
