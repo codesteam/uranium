@@ -5,6 +5,7 @@ module Uranium
         :view_layout    => File.expand_path(File.dirname(__FILE__))+'/templates/layout.html.erb',
         :view_api_path  => File.expand_path(File.dirname(__FILE__))+'/templates/_api_path.html.erb',
         :view_container => File.expand_path(File.dirname(__FILE__))+'/templates/_container.html.erb',
+        :view_tags_js   => File.expand_path(File.dirname(__FILE__))+'/templates/_tags.js.erb',
       }
       @options = @options.merge(options)
       @source  = source
@@ -25,6 +26,10 @@ module Uranium
 
     def render_container()
       ERB.new(File.open(@options[:view_container]){|file| file.read}).result(binding)
+    end
+
+    def generate_tags_script()
+      ERB.new(File.open(@options[:view_tags_js]){|file| file.read}).result(binding)
     end
   end
 end

@@ -48,16 +48,18 @@ module Uranium
       end
 
       def check_querytype(querytype)
-        raise "Query type '#{querytype}' not supported" unless @querytype_values.include? querytype
+        raise "Query type '#{querytype}' not supported." unless @querytype_values.include? querytype
       end
 
       def check_located_in(located_in)
-        raise "Located in '#{located_in}' not supported" unless @located_in_values.include? located_in
+        raise "Located in '#{located_in}' not supported." unless @located_in_values.include? located_in
       end
 
       def check_tags(tags)
+        space_test = Regexp.new "\\s"
         tags.each do |tag|
-          raise "Only string tags supported" unless tag.is_a?(String)
+          raise "Only string tags supported."        unless tag.is_a?(String)
+          raise "Tag cannot contain space symbols."  unless tag[/\s/].nil?
         end
       end
 
