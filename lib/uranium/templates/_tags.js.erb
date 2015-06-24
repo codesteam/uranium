@@ -1,0 +1,23 @@
+function Tag(tag){
+	var visibleClass 	= 'btn-danger';
+	var invisibleClass  = 'btn-default';
+	var tagName 		= $(tag).html();
+	var isActive		= true;
+	
+	$(tag).click(function() {
+		$(tag).toggleClass('btn-danger btn-default');
+		isActive = !isActive;
+		if (isActive) {
+			$('.' + tagName).show();
+		}
+		else {
+			$('.' + tagName).hide();
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('.tag-button').each(function() {
+		new Tag(this);
+	});
+});
